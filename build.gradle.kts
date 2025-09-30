@@ -12,5 +12,5 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     //id("com.android.application")version "8.1.0" apply false
     //noinspection NewerVersionAvailable
-    id ("com.google.dagger.hilt.android") version "2.48" apply false
+    id ("com.google.dagger.hilt.android") version "2.57.2" apply false
 }

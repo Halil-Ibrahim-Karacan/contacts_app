@@ -34,8 +34,8 @@ class KayitFragment : Fragment() {
         binding= FragmentKayitBinding.inflate(inflater, container, false)
 
         binding.buttonKayit.setOnClickListener {
-            val kisi_ad=binding.edittextkisiAd.text.toString()
-            val tel_no=binding.edittextKisiTel.text.toString()
+            val kisi_ad=binding.edittextkisiAdKayit.text.toString()
+            val tel_no=binding.edittextKisiTelKayit.text.toString()
             viewModel.kisiEkle(kisi_ad, tel_no)
             Navigation.findNavController(it).navigate(R.id.kayittanAnasayfayagecis)
         }

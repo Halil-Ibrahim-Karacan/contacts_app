@@ -33,7 +33,7 @@ class KisiDAORepository(var kisilerDAO: KisilerDAO) {
     fun kisiEkle(kisiAd: String, kisiTel: String) {
         val job = CoroutineScope(Dispatchers.Main).launch {
             //id veritabanında otomatik arrtığı için, burda girilen değer farketmez
-            kisilerDAO.update_Contact(Kisiler(0, kisiAd, kisiTel))
+            kisilerDAO.add_Contact(Kisiler(0, kisiAd, kisiTel))
         }
     }
 
@@ -46,8 +46,14 @@ class KisiDAORepository(var kisilerDAO: KisilerDAO) {
     fun kisiSil(kisi: Kisiler) {
         val job = CoroutineScope(Dispatchers.Main).launch {
             kisilerDAO.delete_Contact(kisi)
+            tumKisiler()
         }
     }
 
+    fun kisiAra(kisiAd: String) {
+        val job = CoroutineScope(Dispatchers.Main).launch {
+            kisilerListesi.value = kisilerDAO.search_Contact(kisiAd)
+        }
+    }
 
 }

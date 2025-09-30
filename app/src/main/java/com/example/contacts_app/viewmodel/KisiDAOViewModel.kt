@@ -16,8 +16,8 @@ class KisiDAOViewModel @Inject constructor(var kisiDAORepository: KisiDAOReposit
     var kisilerListesi: MutableLiveData<List<Kisiler>>
 
     init {
-        kisileriYukle()
         kisilerListesi = kisiDAORepository.KisileriGetir()
+        kisileriYukle()
     }
 
     fun kisileriYukle() {
@@ -35,5 +35,9 @@ class KisiDAOViewModel @Inject constructor(var kisiDAORepository: KisiDAOReposit
 
     fun kisiSil(kisi: Kisiler) {
         kisiDAORepository.kisiSil(kisi)
+    }
+
+    fun kisiAra(kisiAd: String) {
+        kisiDAORepository.kisiAra(kisiAd)
     }
 }

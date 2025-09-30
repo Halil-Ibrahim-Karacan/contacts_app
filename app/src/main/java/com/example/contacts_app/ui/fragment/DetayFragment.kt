@@ -34,13 +34,13 @@ class DetayFragment : Fragment() {
         val bundle:DetayFragmentArgs by navArgs()
         gelen_kisi=bundle.kisi
 
-        binding.edittextkisiAd.setText(gelen_kisi?.kisi_ad)
-        binding.edittextKisiTel.setText(gelen_kisi?.kisi_telefon)
+        binding.edittextkisiAdDetay.setText(gelen_kisi?.kisi_ad)
+        binding.edittextKisiTelDetay.setText(gelen_kisi?.kisi_telefon)
 
         binding.buttonGuncelle.setOnClickListener {
             val kisi_id = gelen_kisi?.kisi_id
-            val kisi_ad=binding.edittextkisiAd.text.toString()
-            val kisi_tel=binding.edittextKisiTel.text.toString()
+            val kisi_ad=binding.edittextkisiAdDetay.text.toString()
+            val kisi_tel=binding.edittextKisiTelDetay.text.toString()
             viewModel.kisiGuncelle(kisi_id!!, kisi_ad, kisi_tel)
             Navigation.findNavController(it).navigate(R.id.detaydanAnasayfayagecis)
         }

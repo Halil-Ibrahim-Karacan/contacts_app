@@ -9,5 +9,5 @@ import com.example.contacts_app.data.entity.Kisiler
 
 //asttact = interface özelliği olan class'tır
 abstract class DatabaseContactRoom : RoomDatabase() {
-    abstract  fun getKisilerDAO() : KisilerDAO
+    abstract fun getKisilerDAO() : KisilerDAO
 }

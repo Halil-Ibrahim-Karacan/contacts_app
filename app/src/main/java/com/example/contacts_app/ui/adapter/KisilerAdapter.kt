@@ -46,6 +46,7 @@ class KisilerAdapter(var mContext:Context ,var kisiler_Listesi:MutableList<Kisil
             Snackbar.make(it,"${kisi.kisi_ad} silinsin mi ?",Snackbar.LENGTH_SHORT)
                 .setAction("Evet"){
                     viewModel.kisiSil(kisi)
+                    viewModel.kisileriYukle()
                 }
                 .show()
         }

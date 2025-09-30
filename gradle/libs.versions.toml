@@ -15,7 +15,7 @@ constraintlayout = "2.2.1"
 navigationFragmentKtx = "2.9.5"
 navigationSafeArgsGradlePlugin = "2.9.5"
 navigationUiKtx = "2.9.5"
-roomRuntime = "2.8.1"
+roomRuntime = "2.7.2"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }

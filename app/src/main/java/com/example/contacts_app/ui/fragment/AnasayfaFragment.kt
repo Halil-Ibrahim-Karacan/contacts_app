@@ -52,8 +52,6 @@ class AnasayfaFragment : Fragment() {
             binding.adapter = kisilerAdapter
         }
 
-        binding.rw.layoutManager=LinearLayoutManager(requireContext())
-
         binding.fab.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.kayitgecis)
 
@@ -61,22 +59,16 @@ class AnasayfaFragment : Fragment() {
 
         binding.searchView1.setOnQueryTextListener(object :OnQueryTextListener{
             override fun onQueryTextChange(newText: String): Boolean {
+                viewModel.kisiAra(newText)
                 return true
-                val filteredList = ArrayList<Kisiler?>()
-                if (kisilerListesi != null) {
-                    for (contact in kisilerListesi) {
-                        if (!contact?.kisi_ad?.isEmpty()!! && contact.kisi_ad?.lowercase(Locale.getDefault())?.contains(newText!!.lowercase(Locale.getDefault())) == true) {
-                            filteredList.add(contact)
-                        }
-                    }
-                    kisilerAdapter?.updateList(filteredList)
-                }
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
+                viewModel.kisiAra(query)
                 return true
             }
         })
+
         return binding.root
     }
 
