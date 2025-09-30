@@ -1,28 +1,28 @@
 package com.example.contacts_app.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
+import com.example.contacts_app.R
 import com.example.contacts_app.data.entity.Kisiler
+import com.example.contacts_app.databaseroom.KisilerDAO
+import com.example.contacts_app.databaseroom.DatabaseContactRoom
 import com.example.contacts_app.databinding.CardViewBinding
-import com.example.contacts_app.databinding.FragmentAnasayfaBinding
 import com.example.contacts_app.ui.fragment.AnasayfaFragmentDirections
+import com.example.contacts_app.viewmodel.KisiDAOViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class KisilerAdapter(var mContext:Context ,var kisiler_Listesi:List<Kisiler>) :RecyclerView.Adapter<KisilerAdapter.CardTasarimHolder>() {
+class KisilerAdapter(var mContext:Context ,var kisiler_Listesi:MutableList<Kisiler>, val viewModel: KisiDAOViewModel) :RecyclerView.Adapter<KisilerAdapter.CardTasarimHolder>() {
 
 
     inner class CardTasarimHolder(var tasarim: CardViewBinding):RecyclerView.ViewHolder(tasarim.root)
 
-
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardTasarimHolder {
-        val binding= CardViewBinding.inflate(LayoutInflater.from(mContext), parent, false)
+        val binding= DataBindingUtil.inflate<CardViewBinding>(LayoutInflater.from(parent.context), R.layout.card_view, parent, false)
         return CardTasarimHolder(binding)
     }
 
@@ -31,8 +31,10 @@ class KisilerAdapter(var mContext:Context ,var kisiler_Listesi:List<Kisiler>) :R
        val kisi=kisiler_Listesi.get(position)
         val t=holder.tasarim
 
-        t.textViewName.text=kisi.kisi_ad
-        t.textViewPNumber.text=kisi.kisi_tel
+        t.kisi = kisi
+
+        //t.textViewName.text=kisi.kisi_ad
+        //t.textViewPNumber.text=kisi.kisi_telefon
 
         t.CardviewSatir.setOnClickListener {
             val gecis=AnasayfaFragmentDirections.detaygecis(kisi)
@@ -43,8 +45,7 @@ class KisilerAdapter(var mContext:Context ,var kisiler_Listesi:List<Kisiler>) :R
         t.imageViewCancel.setOnClickListener {
             Snackbar.make(it,"${kisi.kisi_ad} silinsin mi ?",Snackbar.LENGTH_SHORT)
                 .setAction("Evet"){
-                    sil(kisi.kisi_id)
-
+                    viewModel.kisiSil(kisi)
                 }
                 .show()
         }
@@ -57,13 +58,13 @@ class KisilerAdapter(var mContext:Context ,var kisiler_Listesi:List<Kisiler>) :R
         return kisiler_Listesi.size
     }
 
-
-
-
-    fun sil(kisi_id:Int){
-        Log.e("Kişi Sildindi",kisi_id.toString())
-
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateList(newList: ArrayList<Kisiler?>) {
+        kisiler_Listesi = newList as MutableList<Kisiler>
+        notifyDataSetChanged()
     }
+
+
 
 
 }

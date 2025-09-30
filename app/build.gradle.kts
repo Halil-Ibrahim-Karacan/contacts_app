@@ -2,20 +2,24 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("androidx.navigation.safeargs")
+    id ("kotlin-kapt")
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
     namespace = "com.example.contacts_app"
-    compileSdk = 35
+    compileSdk = 36
 
 
     buildFeatures{
         viewBinding=true
+        dataBinding=true
     }
 
     defaultConfig {
         applicationId = "com.example.contacts_app"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -53,4 +57,18 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Room
+    implementation (libs.androidx.room.runtime)
+    //noinspection KaptUsageInsteadOfKsp
+    kapt (libs.androidx.room.compiler)
+    //Coroutine
+    implementation (libs.androidx.room.ktx)
+    implementation (libs.androidx.lifecycle.runtime.ktx)
+    //ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.activity.ktx)
+    //Hilt
+    implementation (libs.hilt.android)
+    kapt (libs.hilt.android.compiler)
 }

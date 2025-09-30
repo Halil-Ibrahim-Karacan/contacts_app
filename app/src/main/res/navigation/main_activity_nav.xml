@@ -21,7 +21,11 @@
         android:id="@+id/kayitFragment"
         android:name="com.example.contacts_app.ui.fragment.KayitFragment"
         android:label="fragment_kayit"
-        tools:layout="@layout/fragment_kayit" />
+        tools:layout="@layout/fragment_kayit" >
+        <action
+            android:id="@+id/kayittanAnasayfayagecis"
+            app:destination="@id/anasayfaFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detayFragment"
         android:name="com.example.contacts_app.ui.fragment.DetayFragment"
@@ -30,5 +34,8 @@
         <argument
             android:name="kisi"
             app:argType="com.example.contacts_app.data.entity.Kisiler" />
+        <action
+            android:id="@+id/detaydanAnasayfayagecis"
+            app:destination="@id/anasayfaFragment" />
     </fragment>
 </navigation>
